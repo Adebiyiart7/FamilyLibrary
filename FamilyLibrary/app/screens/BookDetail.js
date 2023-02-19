@@ -7,6 +7,7 @@ import AppText from "../components/AppText";
 import bookList from "../data/bookList";
 import colors from "../config/colors";
 import DisplayStars from "../components/DisplayStars";
+import HeadingText from "../components/HeadingText";
 
 const BookDetail = ({ navigation, route }) => {
   const book = bookList.find((book) => book._id === route.params._id);
@@ -22,16 +23,12 @@ const BookDetail = ({ navigation, route }) => {
           <AppText numberOfLines={2} style={styles.author}>
             {book.author}
           </AppText>
-              <DisplayStars
-                size={5}
-                style={styles.displayStars}
-                />
-                <View style={styles.card}>
-                  <View>
-              <AppText></AppText>
-            </View>
-          </View>
+          <DisplayStars size={5} style={styles.displayStars} />
         </View>
+      </View>
+      <View style={styles.summary}>
+        <HeadingText>Summary</HeadingText>
+        <AppText style={styles.summaryText}>{book.summary }</AppText>
       </View>
     </Screen>
   );
@@ -57,6 +54,13 @@ const styles = StyleSheet.create({
   },
   right: {
     marginLeft: 10
+  },
+  summary: {
+    marginTop: 10,
+  },
+  summaryText: {
+    lineHeight: 19,
+    fontSize: 16,
   },
   title: {
     fontWeight: "700",
