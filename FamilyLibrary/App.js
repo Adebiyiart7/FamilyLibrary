@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import colors, { theme } from "./app/config/colors";
 import AppNavigator from "./app/navigation/AppNavigator";
 import { loadFonts } from "./app/components/Font";
+import store from "./app/store/store";
 
 export default function App() {
   useEffect(() => {
@@ -13,12 +14,15 @@ export default function App() {
   }, []);
 
   return (
+     <Provider store={store}>
+      
     <NavigationContainer>
       <StatusBar
         backgroundColor={colors.appBackground}
         barStyle={theme === "light" ? "dark-content" : "light-content"}
-      />
+        />
       <AppNavigator />
     </NavigationContainer>
+        </Provider>
   );
 }

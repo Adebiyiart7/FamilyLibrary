@@ -11,24 +11,27 @@ import HeadingText from "../components/HeadingText";
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
 import AppButton from "../components/AppButton";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useSelector } from "react-redux"
 
 const BookDetail = ({ navigation, route }) => {
   const [reading, setReading] = useState(true);
   const book = bookList.find((book) => book._id === route.params._id);
 
+  const { books } = useSelector(state => state.books)
+  console.log(books);
+  
   const Footer = () => {
-    
     return (
       <View style={styles.footer}>
         <View style={styles.footerLeft}>
-          <TouchableOpacity style={styles.icon}>
+          <View style={styles.icon}>
             <MaterialCommunityIcons
               name="book-open-page-variant-outline"
               size={24}
             />
-            <AppText style={styles.iconText}>Page 20 of 650</AppText>
-          </TouchableOpacity>
+            <AppText style={styles.iconText}>Screen 20 of 650</AppText>
+          </View>
           <TouchableOpacity style={styles.icon}>
             <MaterialCommunityIcons name="book-plus-outline" size={24} />
             <AppText style={styles.iconText}>Bookmark</AppText>
@@ -39,10 +42,15 @@ const BookDetail = ({ navigation, route }) => {
         </AppButton>
       </View>
     );
-  }
+  };
   return (
-    <Screen header={<AppHeader title={"Details"} />}
-    footer={<AppFooter><Footer /></AppFooter>}
+    <Screen
+      header={<AppHeader title={"Details"} />}
+      footer={
+        <AppFooter>
+          <Footer />
+        </AppFooter>
+      }
     >
       <View style={styles.top}>
         <Image source={book.image} style={styles.image} />
@@ -57,7 +65,7 @@ const BookDetail = ({ navigation, route }) => {
         </View>
       </View>
       <View style={styles.summary}>
-        <HeadingText>Summary</HeadingText>
+        <HeadingText style={{ marginBottom: 5 }}>Summary</HeadingText>
         <AppText style={styles.summaryText}>{book.summary}</AppText>
       </View>
     </Screen>
@@ -72,7 +80,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   button: {
-    flex: 1,
+    flex: 1
   },
   displayStars: {
     display: "flex",
@@ -82,20 +90,20 @@ const styles = StyleSheet.create({
   footer: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   footerLeft: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "row"
   },
   icon: {
     display: "flex",
     alignItems: "center",
-    marginRight: 16,
+    marginRight: 16
   },
   iconText: {
     fontSize: 11,
-    marginTop: 2,
+    marginTop: 2
   },
   image: {
     width: 110,

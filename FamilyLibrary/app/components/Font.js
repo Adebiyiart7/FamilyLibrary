@@ -6,7 +6,7 @@ export const loadFonts = async () => {
     OpenSans: require("../assets/fonts/OpenSans/OpenSans-Regular.ttf"),
     LatoRegular: require("../assets/fonts/Lato/Lato-Regular.ttf"),
     LatoBold: require("../assets/fonts/Lato/Lato-Bold.ttf"),
-    JosefinSansRegular: require("../assets/fonts/JosefinSan/JosefinSan-Regular.ttf")
+    JosefinSansRegular: require("../assets/fonts/JosefinSans/JosefinSans-Regular.ttf")
     // Add additional font files here
   });
 };
