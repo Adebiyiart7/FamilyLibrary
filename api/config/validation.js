@@ -35,8 +35,22 @@ const profileSchema = Joi.object({
   gender: Joi.string().required().min(3).max(20).label("Gender"),
 });
 
+const addBookSchema = Joi.object({
+    author: Joi.string().required().min(3).max(255).label("Author"),
+    image: Joi.string().required().label("Image"),
+    screenCount: Joi.string().label("Screen Count"),
+    readersCount: Joi.string().label("Readers Count"),
+    averageRating: Joi.string().label("Average Rating"),
+    ratingsCount: Joi.string().label("Ratings Count"),
+    summary: Joi.string().required().label("Summary"),
+    genre: Joi.string().required().min(3).max(255).label("Genre"),
+    fullText: Joi.string().required().label("Full Text"),
+
+});
+
 module.exports = {
   registerSchema,
   loginSchema,
   profileSchema,
+  addBookSchema
 };

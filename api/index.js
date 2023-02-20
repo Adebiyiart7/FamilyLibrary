@@ -14,12 +14,13 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({ origin: ["http://192.168.43.231:5000", "http://localhost:5000"] })
-);
+// app.use(
+//   cors({ origin: ["http://192.168.43.231:5000", "http://localhost:5000"] })
+// );
 
 // ROUTES
 app.use("/api/users", require("./routes/user"));
+app.use("/api/books", require("./routes/book"));
 
 // ERROR
 app.use(errorMiddleware);
