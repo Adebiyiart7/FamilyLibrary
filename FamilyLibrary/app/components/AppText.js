@@ -21,6 +21,9 @@ export default AppText;
 const styles = StyleSheet.create({
   text: {
     color: colors.primaryText,
-    fontFamily: "Labrada"
+    fontFamily: "JosefinSansRegular",
+    // fontFamily: "Labrada",
+    // fontFamily: "LatoRegular"
+    // fontFamily: "OpenSans",
   }
 });

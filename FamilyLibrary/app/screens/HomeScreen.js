@@ -69,7 +69,6 @@ const Home = () => {
   return (
     <Screen scrollable={false}>
       <Header />
-
       <AppTextInput
         style={styles.searchInput}
         placeholder="Search Library..."
@@ -95,7 +94,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    paddingTop: 10,
   },
   headingText: {
     marginVertical: 10,

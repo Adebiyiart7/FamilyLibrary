@@ -1,7 +1,7 @@
 const routes = {
   TAB: "Tab",
   BOOK_DETAIL: "Detail",
-  FAVORITES: "Favorites",
+  BOOKMARKS: "Bookmarks",
   HOME: "Home",
   LIBRARY: "Library",
   SETTINGS: "Settings",

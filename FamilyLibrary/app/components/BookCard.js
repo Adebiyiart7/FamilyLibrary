@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   title: {
-    fontWeight: "600",
+    fontWeight: "700",
     fontSize: 16,
     marginBottom: 5
   },

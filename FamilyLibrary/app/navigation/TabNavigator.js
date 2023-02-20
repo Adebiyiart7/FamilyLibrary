@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import routes from "../config/routes";
 import HomeScreen from "../screens/HomeScreen";
 import tabBarIcon from "./tabBarIcon";
-import FavoritesScreen from "../screens/FavoritesScreen";
+import BookmarksScreen from "../screens/BookmarksScreen";
 import LibraryScreen from "../screens/LibraryScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import colors from "../config/colors";
@@ -40,8 +40,8 @@ const TabNavigator = () => {
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name={routes.FAVORITES}
-        component={FavoritesScreen}
+        name={routes.BOOKMARKS}
+        component={BookmarksScreen}
         options={{ headerShown: false }}
       />
       <Tab.Screen

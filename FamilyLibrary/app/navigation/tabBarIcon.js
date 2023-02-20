@@ -1,4 +1,5 @@
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { View } from "react-native";
 
 // LOCAL IMPORTS
 import colors from "../config/colors";
@@ -9,8 +10,8 @@ const tabBarIcon = (route, focused) => {
 
   if (route.name === routes.HOME) {
     iconName = focused ? "ios-home" : "ios-home-outline";
-  } else if (route.name === routes.FAVORITES) {
-    iconName = focused ? "ios-heart" : "ios-heart-outline";
+  } else if (route.name === routes.BOOKMARKS) {
+    iconName = focused ? "bookmark-multiple" : "bookmark-multiple-outline";
   } else if (route.name === routes.LIBRARY) {
     iconName = focused ? "ios-library" : "ios-library-outline";
   } else if (route.name === routes.SETTINGS) {
@@ -18,11 +19,21 @@ const tabBarIcon = (route, focused) => {
   }
 
   return (
-    <Ionicons
-      name={iconName}
-      color={focused ? colors.primaryColor : colors.lightText}
-      size={24}
-    />
+    <View>
+      {route.name === routes.BOOKMARKS ? (
+        <MaterialCommunityIcons
+        name={iconName}
+        color={focused ? colors.primaryColor : colors.lightText}
+        size={24}
+        />
+        ) : (
+        <Ionicons
+          name={iconName}
+          color={focused ? colors.primaryColor : colors.lightText}
+          size={24}
+        />
+      )}
+    </View>
   );
 }
 
