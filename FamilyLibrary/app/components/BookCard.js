@@ -10,7 +10,7 @@ import routes from "../config/routes";
 
 const BookCard = ({ item }) => {
   const navigation = useNavigation();
-  
+
   return (
     <TouchableOpacity
       style={styles.card}
@@ -20,8 +20,8 @@ const BookCard = ({ item }) => {
         })
       }
     >
-      <View>
-        <Image source={item.image} style={styles.image} />
+      <View style={styles.imageContainer}>
+        <Image source={{ uri: item.image }} style={styles.image} />
       </View>
       <View style={styles.details}>
         <AppText numberOfLines={2} style={styles.title}>
@@ -51,6 +51,10 @@ const styles = StyleSheet.create({
   image: {
     width: 70,
     height: 110,
+    borderRadius: 5
+  },
+  imageContainer: {
+    backgroundColor: colors.background200,
     borderRadius: 5
   },
   title: {

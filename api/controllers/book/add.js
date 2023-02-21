@@ -18,6 +18,7 @@ const add = async (req, res) => {
     }
 
     const {
+      title,
       author,
       image,
       summary,
@@ -26,6 +27,7 @@ const add = async (req, res) => {
     } = req.body;
 
     const book = await Book.create({
+      title: title,
       author: author,
       image: image,
       screenCount: 0,
@@ -41,6 +43,7 @@ const add = async (req, res) => {
       apiResponse(res.statusCode, "", {
         _id: book._id,
         author: book.author,
+        title: book.title,
         image: book.image,
         summary: book.summary,
         genre: book.genre,

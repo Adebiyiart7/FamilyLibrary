@@ -7,22 +7,24 @@ import colors, { theme } from "./app/config/colors";
 import AppNavigator from "./app/navigation/AppNavigator";
 import { loadFonts } from "./app/components/Font";
 import store from "./app/store/store";
+import { Provider } from "react-redux";
+import BaseData from "./app/components/BaseData";
 
 export default function App() {
   useEffect(() => {
-     loadFonts();
+    loadFonts();
   }, []);
 
   return (
-     <Provider store={store}>
-      
-    <NavigationContainer>
-      <StatusBar
-        backgroundColor={colors.appBackground}
-        barStyle={theme === "light" ? "dark-content" : "light-content"}
+    <Provider store={store}>
+      <NavigationContainer>
+        <StatusBar
+          backgroundColor={colors.appBackground}
+          barStyle={theme === "light" ? "dark-content" : "light-content"}
         />
-      <AppNavigator />
-    </NavigationContainer>
-        </Provider>
+        <AppNavigator />
+      </NavigationContainer>
+      <BaseData />
+    </Provider>
   );
 }

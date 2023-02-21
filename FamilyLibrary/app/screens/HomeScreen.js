@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   FlatList
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 // LOCAL IMPORTS
@@ -19,6 +19,7 @@ import Chip from "../components/Chip";
 import HeadingText from "../components/HeadingText";
 import BookList from "../components/BookList";
 import bookList from "../data/bookList";
+import { useSelector } from "react-redux";
 
 const categories = [
   { _id: "1", name: "all", focused: "true" },
@@ -35,6 +36,8 @@ const categories = [
 ];
 
 const Home = () => {
+  const { books, isLoading } = useSelector(state => state.books)
+
   const Header = () => {
     return (
       <View style={styles.header}>
@@ -74,7 +77,8 @@ const Home = () => {
         placeholder="Search Library..."
         Icon={<Ionicons name="search" size={20} color={colors.mediumText} />}
       />
-     <BookList ListHeaderComponent={ListHeaderComponent} data={bookList} />
+      {/* <BookList ListHeaderComponent={ListHeaderComponent} data={bookList} /> */}
+      <BookList ListHeaderComponent={ListHeaderComponent} data={books} />
     </Screen>
   );
 };

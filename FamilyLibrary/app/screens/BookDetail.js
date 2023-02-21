@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 // LOCAL IMPORTS
@@ -12,15 +12,14 @@ import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
 import AppButton from "../components/AppButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useSelector } from "react-redux"
+import {  useSelector } from "react-redux";
 
 const BookDetail = ({ navigation, route }) => {
   const [reading, setReading] = useState(true);
-  const book = bookList.find((book) => book._id === route.params._id);
+  const { books, isLoading } = useSelector((state) => state.books);
+  const book = books.find((book) => book._id === route.params._id);
 
-  const { books } = useSelector(state => state.books)
-  console.log(books);
-  
+
   const Footer = () => {
     return (
       <View style={styles.footer}>
@@ -53,7 +52,9 @@ const BookDetail = ({ navigation, route }) => {
       }
     >
       <View style={styles.top}>
-        <Image source={book.image} style={styles.image} />
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: book.image }} style={styles.image} />
+        </View>
         <View style={styles.basics}>
           <AppText numberOfLines={2} style={styles.title}>
             {book.title}
@@ -108,6 +109,10 @@ const styles = StyleSheet.create({
   image: {
     width: 110,
     aspectRatio: 0.65,
+    borderRadius: 5
+  },
+  imageContainer: {
+    backgroundColor: colors.background200,
     borderRadius: 5,
     marginBottom: 10
   },

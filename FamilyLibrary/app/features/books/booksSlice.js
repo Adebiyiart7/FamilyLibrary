@@ -21,7 +21,6 @@ export const getAllBooks = createAsyncThunk("books/all", async (thunkAPI) => {
     }
   } catch (error) {
     const message = error.response.data.body.message.toString();
-    console.log(message);
     return thunkAPI.rejectWithValue(message);
   }
 });
@@ -45,7 +44,7 @@ const booksSlice = createSlice({
       .addCase(getAllBooks.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.profile = action.payload;
+        state.books = action.payload;
       })
       .addCase(getAllBooks.rejected, (state, action) => {
         state.isLoading = false;

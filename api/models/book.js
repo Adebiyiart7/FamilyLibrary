@@ -9,6 +9,7 @@ const addBookSchema = mongoose.Schema(
       max: 255,
       trim: true
     },
+    title: { type: String, required: true, min: 8, max: 255, trim: true },
     image: {
       type: String,
       required: true
@@ -62,12 +63,12 @@ const addBookSchema = mongoose.Schema(
         "Satire",
         "Poetry",
         "Children's literature",
-        "Young adult literature",
+        "Young adult literature"
       ]
     },
     fullText: {
       type: String,
-      required: true,
+      required: true
     }
   },
   { timestamps: true }
