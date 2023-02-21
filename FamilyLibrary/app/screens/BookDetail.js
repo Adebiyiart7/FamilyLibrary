@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
+import routes from "../config/routes";
 import Screen from "../components/Screen";
 import AppText from "../components/AppText";
 import bookList from "../data/bookList";
 import colors from "../config/colors";
+import defaultStyles from "../config/styles";
 import DisplayStars from "../components/DisplayStars";
 import HeadingText from "../components/HeadingText";
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
 import AppButton from "../components/AppButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {  useSelector } from "react-redux";
 
 const BookDetail = ({ navigation, route }) => {
   const [reading, setReading] = useState(true);
   const { books, isLoading } = useSelector((state) => state.books);
   const book = books.find((book) => book._id === route.params._id);
-
 
   const Footer = () => {
     return (
@@ -36,7 +37,15 @@ const BookDetail = ({ navigation, route }) => {
             <AppText style={styles.iconText}>Bookmark</AppText>
           </TouchableOpacity>
         </View>
-        <AppButton rounded style={styles.button}>
+        <AppButton
+          rounded
+          style={styles.button}
+          onPress={() =>
+            navigation.navigate(routes.READ_SCREEN, {
+              _id: route.params._id
+            })
+          }
+        >
           {reading ? "Continue Reading" : "Start Reading"}
         </AppButton>
       </View>
@@ -123,10 +132,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 50
   },
-  summaryText: {
-    lineHeight: 24,
-    fontSize: 16
-  },
+  summaryText: defaultStyles.readingText,
+
   title: {
     fontWeight: "700",
     fontSize: 20,

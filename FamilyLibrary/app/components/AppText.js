@@ -13,6 +13,7 @@ const AppText = ({ style, children, numberOfLines, onPress }) => {
     >
       {children}
     </Text>
+    
   );
 };
 

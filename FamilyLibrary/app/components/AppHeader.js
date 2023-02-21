@@ -14,7 +14,7 @@ const AppHeader = ({ title }) => {
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Ionicons size={30} name="ios-arrow-back" color={colors.primaryText} />
       </TouchableOpacity>
-      <AppText style={styles.title}>{title}</AppText>
+      <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
     </View>
   );
 };

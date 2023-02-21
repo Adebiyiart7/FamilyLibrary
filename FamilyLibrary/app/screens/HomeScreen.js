@@ -37,7 +37,7 @@ const categories = [
 
 const Home = () => {
   const { books, isLoading } = useSelector(state => state.books)
-
+console.log(books);
   const Header = () => {
     return (
       <View style={styles.header}>
