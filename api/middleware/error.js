@@ -9,7 +9,7 @@ module.exports = (err, req, res, next) => {
       message: "",
       body: {
         message: err.message,
-        stack: err.stack
+        stack: err.stack // TODO: Remove this line and uncomment the next one.
         // stack: isProduction ? "" : err.stack
       }
     });
