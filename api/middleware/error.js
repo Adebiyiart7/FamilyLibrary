@@ -9,7 +9,8 @@ module.exports = (err, req, res, next) => {
       message: "",
       body: {
         message: err.message,
-        stack: isProduction ? "" : err.stack
+        stack: err.stack
+        // stack: isProduction ? "" : err.stack
       }
     });
   } else {
