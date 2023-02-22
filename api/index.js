@@ -14,9 +14,9 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({ origin: ["https://familylibrary-api.onrender.com"] })
-);
+// app.use(
+//   cors({ origin: ["https://familylibrary-api.onrender.com"] })
+// );
 
 // ROUTES
 app.use("/api/users", require("./routes/user"));
