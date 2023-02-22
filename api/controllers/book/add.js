@@ -8,7 +8,7 @@ const { apiResponse } = require("../../utils");
  * @access      private
  */
 const add = async (req, res) => {
-  try {
+  // try {
     const schema = addBookSchema;
     const { error } = schema.validate(req.body);
 
@@ -54,11 +54,11 @@ const add = async (req, res) => {
         ratingsCount: book.ratingsCount,
       })
     );
-  } catch (error) {
-    console.log(error);
-    res.status(400);
-    throw new Error("Error Add Book!");
-  }
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(400);
+  //   throw new Error("Error Add Book!");
+  // }
 };
 
 module.exports = add;
