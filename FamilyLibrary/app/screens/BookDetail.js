@@ -76,7 +76,7 @@ const BookDetail = ({ navigation, route }) => {
       </View>
       <View style={styles.summary}>
         <HeadingText style={{ marginBottom: 5 }}>Summary</HeadingText>
-        <AppText style={styles.summaryText}>{book.summary}</AppText>
+        <AppText style={defaultStyles.readingText}>{book.summary}</AppText>
       </View>
     </Screen>
   );
@@ -132,7 +132,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 50
   },
-  summaryText: defaultStyles.readingText,
 
   title: {
     fontWeight: "700",

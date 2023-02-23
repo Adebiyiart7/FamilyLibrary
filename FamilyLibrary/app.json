@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFE6"
-      }
+      },
+      "package": "com.adebiyiart.FamilyLibrary"
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3aa246ff-e5d9-4a00-8cb1-7c9052374eff"
+      }
     }
   }
 }

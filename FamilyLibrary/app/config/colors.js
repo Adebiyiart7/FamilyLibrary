@@ -15,6 +15,7 @@ const colors = () => {
       mediumText: "#6e6969",
       primaryColor: "#7E57C2",
       primaryText: "#222",
+      selectionColor: "#FFFF00",
       white: "#FFF"
     };
   }
@@ -32,6 +33,7 @@ const colors = () => {
     mediumText: "#6e6969",
     primaryColor: "#7E57C2",
     primaryText: "#FFF",
+    selectionColor: "#FFFF00",
     white: "#000"
   };
 };

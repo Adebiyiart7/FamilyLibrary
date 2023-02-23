@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import routes from "../config/routes";
 import HomeScreen from "../screens/HomeScreen";
 import tabBarIcon from "./tabBarIcon";
-import BookmarksScreen from "../screens/BookmarksScreen";
+import Bookmarks from "../screens/Bookmarks";
 import LibraryScreen from "../screens/LibraryScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import colors from "../config/colors";
@@ -15,14 +15,13 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-    
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => tabBarIcon(route, focused),
         tabBarLabelPosition: "below-icon",
         tabBarStyle: {
           height: 57,
           backgroundColor: colors.appBackground,
-          borderTopColor: colors.border100,
+          borderTopColor: colors.border100
         },
         tabBarLabelStyle: {
           marginBottom: 5,
@@ -41,7 +40,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name={routes.BOOKMARKS}
-        component={BookmarksScreen}
+        component={Bookmarks}
         options={{ headerShown: false }}
       />
       <Tab.Screen

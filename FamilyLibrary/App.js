@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 // LOCAL IMPORTS
 import colors, { theme } from "./app/config/colors";
@@ -16,15 +17,21 @@ export default function App() {
   }, []);
 
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <StatusBar
-          backgroundColor={colors.appBackground}
-          barStyle={theme === "light" ? "dark-content" : "light-content"}
-        />
-        <AppNavigator />
-      </NavigationContainer>
-      <BaseData />
-    </Provider>
+    <ActionSheetProvider>
+      <Provider store={store}>
+        <NavigationContainer>
+          <StatusBar
+            backgroundColor={colors.appBackground}
+            barStyle={theme === "light" ? "dark-content" : "light-content"}
+          />
+          <AppNavigator />
+        </NavigationContainer>
+        <BaseData />
+      </Provider>
+    </ActionSheetProvider>
   );
 }
+
+/**
+ * eas build -p android --profile preview
+ */

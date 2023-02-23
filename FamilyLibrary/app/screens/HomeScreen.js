@@ -32,12 +32,12 @@ const categories = [
   { _id: "8", name: "romance", focused: "false" },
   { _id: "9", name: "bible story", focused: "false" },
   { _id: "10", name: "historical", focused: "false" },
-  { _id: "11", name: "science fiction", focused: "false"}
+  { _id: "11", name: "science fiction", focused: "false" }
 ];
 
 const Home = () => {
-  const { books, isLoading } = useSelector(state => state.books)
-console.log(books);
+  const { books, isLoading } = useSelector((state) => state.books);
+
   const Header = () => {
     return (
       <View style={styles.header}>
@@ -67,7 +67,7 @@ console.log(books);
         <HeadingText style={styles.headingText}>Recommended</HeadingText>
       </>
     );
-  }
+  };
 
   return (
     <Screen scrollable={false}>
@@ -77,8 +77,14 @@ console.log(books);
         placeholder="Search Library..."
         Icon={<Ionicons name="search" size={20} color={colors.mediumText} />}
       />
-      {/* <BookList ListHeaderComponent={ListHeaderComponent} data={bookList} /> */}
-      <BookList ListHeaderComponent={ListHeaderComponent} data={books} />
+      {isLoading ? (
+        <AppText>Loading...</AppText>
+      ) : (
+        <>
+          {/* <BookList ListHeaderComponent={ListHeaderComponent} data={bookList} /> */}
+          <BookList ListHeaderComponent={ListHeaderComponent} data={books} />
+        </>
+      )}
     </Screen>
   );
 };
@@ -92,17 +98,17 @@ const styles = StyleSheet.create({
     borderRadius: 30
   },
   categories: {
-    marginTop: 10,
+    marginTop: 10
   },
   header: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 10,
+    paddingTop: 10
   },
   headingText: {
-    marginVertical: 10,
+    marginVertical: 10
   },
   logo: {
     height: 29,
@@ -119,6 +125,6 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   searchInput: {
-    marginTop: 15,
-  },
+    marginTop: 15
+  }
 });
