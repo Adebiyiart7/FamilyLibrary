@@ -1,6 +1,6 @@
-import { FlatList, StyleSheet, StatusBar, View } from "react-native";
-import React from "react";
-import { useSelector } from "react-redux";
+import { FlatList, StyleSheet, StatusBar, View, Text } from "react-native";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useWindowDimensions } from "react-native";
 import Constants from "expo-constants";
 
@@ -13,19 +13,21 @@ import colors from "../config/colors";
 const ReadScreen = ({ route }) => {
   const { books } = useSelector((state) => state.books);
   const book = books.find((b) => b._id === route.params._id);
-  const { width: screenWidth } = useWindowDimensions();
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
+
 
   let paginatedText;
-  let charCountPerPage = 800;
+  // let charCountPerPage = 700;
 
-  for (let i = 0; i < book.fullText.length; i++) {
-    if (i > 0 && i % charCountPerPage === 0) {
-      paginatedText += "?=?";
-    }
-    paginatedText += book.fullText[i];
-  }
+  // for (let i = 0; i < book.fullText.length; i++) {
+  //   if (i > 0 && i % charCountPerPage === 0) {
+  //     paginatedText += "?=?";
+  //   }
 
-  paginatedText = paginatedText.split("?=?");
+  //   paginatedText += book.fullText[i];
+  // }
+
+  paginatedText = book.fullText.split("?=?");
 
   const pages = [];
   for (const item of paginatedText) {
@@ -33,9 +35,10 @@ const ReadScreen = ({ route }) => {
   }
 
   return (
-    <Screen header={<AppHeader title={book.title} style={styles.screen} />}>
+    <Screen header={<AppHeader title={book.title} />} style={styles.screen}>
       {/* <StatusBar hidden /> */}
-      <FlatList
+      {/* <FlatList
+        style={styles.flatlist}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
@@ -43,17 +46,18 @@ const ReadScreen = ({ route }) => {
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
           <View>
-            <AppText reading selectable style={{ width: screenWidth - 32 }}>
+            <AppText reading selectable style={{ width: screenWidth - 32,  }}>
               {item.text}
             </AppText>
-            {/* <View style={styles.pageContainer}> */}
-              <AppText style={styles.page}>
-                Page {item._id} of {pages.length}
-              </AppText>
-            {/* </View> */}
+            <AppText style={styles.page}>
+              Page {item._id} of {pages.length}
+            </AppText>
           </View>
         )}
-      />
+      /> */}
+      <AppText markdown reading selectable>
+        {book.fullText}
+      </AppText>
     </Screen>
   );
 };
@@ -61,22 +65,20 @@ const ReadScreen = ({ route }) => {
 export default ReadScreen;
 
 const styles = StyleSheet.create({
+  flatlist: {},
   page: {
     position: "absolute",
     color: colors.lightText,
     textAlign: "center",
-    bottom: 24,
+    top: 24,
     right: 0,
     backgroundColor: colors.white,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
     borderRadius: 4,
-  },
-  pageContainer: {
-    display: "flex",
-    alignItems: "center"
+    borderWidth: 1,
+    borderColor: colors.border100,
+    fontSize: 12,
+    zIndex: 9999,
   }
-  // screen: {
-  //   paddingTop: -Constants.statusBarHeight
-  // }
 });

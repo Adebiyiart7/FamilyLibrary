@@ -19,7 +19,7 @@ import Chip from "../components/Chip";
 import HeadingText from "../components/HeadingText";
 import BookList from "../components/BookList";
 import bookList from "../data/bookList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const categories = [
   { _id: "1", name: "all", focused: "true" },

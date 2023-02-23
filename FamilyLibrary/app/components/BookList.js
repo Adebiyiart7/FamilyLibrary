@@ -1,8 +1,13 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import BookCard from './BookCard'
+import { useDispatch } from 'react-redux';
+import { getAllBooks } from '../features/books/booksSlice';
 
 const BookList = ({ data, ListHeaderComponent }) => {
+  const [refreshing] = useState(false);
+  const dispatch = useDispatch();
+
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
@@ -13,6 +18,10 @@ const BookList = ({ data, ListHeaderComponent }) => {
       ItemSeparatorComponent={<View style={{ marginBottom: 16 }} />}
       ListHeaderComponent={ListHeaderComponent}
       ListFooterComponent={<View style={{ marginBottom: 16 }} />}
+      refreshing={refreshing}
+      onRefresh={() => {
+        dispatch(getAllBooks());
+      }}
     />
   );
 };
