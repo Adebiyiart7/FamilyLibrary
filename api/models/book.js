@@ -9,7 +9,14 @@ const addBookSchema = mongoose.Schema(
       max: 255,
       trim: true
     },
-    title: { type: String, required: true, min: 8, max: 255, trim: true },
+    title: {
+      type: String,
+      lowercase: true,
+      required: true,
+      min: 8,
+      max: 255,
+      trim: true
+    },
     image: {
       type: String,
       required: true
@@ -40,7 +47,8 @@ const addBookSchema = mongoose.Schema(
       required: true,
       trim: true,
       min: 3,
-      max: 1000
+      max: 1000,
+      lowercase: true
     },
     fullText: {
       type: String,

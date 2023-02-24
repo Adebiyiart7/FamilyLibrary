@@ -27,7 +27,7 @@ const add = async (req, res) => {
     } = req.body;
 
   // check if book already exist
-  if (await Book.findOne({ title: title })) {
+  if (await Book.findOne({ title: title.toLowerCase() })) {
     res.status(400);
     throw new Error("A book with this title already exist!")
   }

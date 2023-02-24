@@ -7,6 +7,7 @@ const tagSchema = mongoose.Schema({
     unique: true,
     trim: true,
     max: 255,
+    lowercase: true,
   },
   numberOfBooks: {
     type: Number,
