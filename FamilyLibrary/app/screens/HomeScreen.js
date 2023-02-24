@@ -18,8 +18,7 @@ import AppTextInput from "../components/form/AppTextInput";
 import Chip from "../components/Chip";
 import HeadingText from "../components/HeadingText";
 import BookList from "../components/BookList";
-import bookList from "../data/bookList";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const categories = [
   { _id: "1", name: "all", focused: "true" },
@@ -64,7 +63,12 @@ const Home = () => {
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => <Chip text={item.name} />}
         />
-        <HeadingText style={styles.headingText}>Recommended</HeadingText>
+        {books && (
+          <HeadingText style={styles.headingText}>Recommended</HeadingText>
+        )}
+        {isLoading && (
+          <AppText style={styles.loadingText}>Loading books...</AppText>
+        )}
       </>
     );
   };
@@ -77,14 +81,14 @@ const Home = () => {
         placeholder="Search Library..."
         Icon={<Ionicons name="search" size={20} color={colors.mediumText} />}
       />
-      {isLoading ? (
-        <AppText>Loading...</AppText>
-      ) : (
-        <>
-          {/* <BookList ListHeaderComponent={ListHeaderComponent} data={bookList} /> */}
-          <BookList ListHeaderComponent={ListHeaderComponent} data={books} />
-        </>
-      )}
+      <>
+        {/* <BookList ListHeaderComponent={ListHeaderComponent} data={bookList} /> */}
+        <BookList
+          ListHeaderComponent={ListHeaderComponent}
+          data={books}
+          isLoading={isLoading}
+        />
+      </>
     </Screen>
   );
 };
@@ -109,6 +113,12 @@ const styles = StyleSheet.create({
   },
   headingText: {
     marginVertical: 10
+  },
+  loadingText: {
+    textAlign: "center",
+    color: colors.mediumText,
+    fontSize: 16,
+    marginVertical: 16
   },
   logo: {
     height: 29,
