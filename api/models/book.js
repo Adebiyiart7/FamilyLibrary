@@ -7,7 +7,8 @@ const addBookSchema = mongoose.Schema(
       required: true,
       min: 8,
       max: 255,
-      trim: true
+      trim: true,
+      lowercase: true
     },
     title: {
       type: String,
