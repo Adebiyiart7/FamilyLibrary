@@ -44,7 +44,12 @@ const addBookSchema = Joi.object({
   averageRating: Joi.string().label("Average Rating"),
   ratingsCount: Joi.string().label("Ratings Count"),
   summary: Joi.string().required().label("Summary"),
-  tags: Joi.string().required().min(3).max(1000).label("Tags"),
+  tags: Joi.string()
+    // .regex(/(.*),$/, ": must end with a comma")
+    .required()
+    .min(3)
+    .max(1000)
+    .label("Tags"),
   fullText: Joi.string().required().label("Full Text")
 });
 
