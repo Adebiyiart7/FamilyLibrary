@@ -7,7 +7,9 @@ const { apiResponse } = require("../../../utils");
  * @access      public
  */
 const get20Tags = async (req, res) => {
-  const tags = await Tag.find().select("-__v");
+  const tags = await Tag.find().select("name", "numberOfBooks").sort({
+    numberOfBooks: -1,
+  });
   return res
     .status(201)
     .json(apiResponse(res.statusCode, "Request successful", tags));

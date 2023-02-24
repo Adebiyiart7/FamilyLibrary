@@ -36,8 +36,9 @@ const ReadScreen = ({ route }) => {
 
   return (
     <Screen header={<AppHeader title={book.title} />} style={styles.screen}>
-      {/* <StatusBar hidden /> */}
-      {/* <FlatList
+      <View style={styles.container}>
+        {/* <StatusBar hidden /> */}
+        {/* <FlatList
         style={styles.flatlist}
         horizontal
         pagingEnabled
@@ -55,9 +56,10 @@ const ReadScreen = ({ route }) => {
           </View>
         )}
       /> */}
-      <AppText markdown reading selectable>
-        {book.fullText}
-      </AppText>
+        <AppText markdown reading selectable>
+          {book.fullText}
+        </AppText>
+      </View>
     </Screen>
   );
 };
@@ -65,6 +67,9 @@ const ReadScreen = ({ route }) => {
 export default ReadScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 50,
+  },
   flatlist: {},
   page: {
     position: "absolute",

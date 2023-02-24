@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   title: {
     marginLeft: 16,
     fontWeight: "800",
-    fontSize: 20
+    fontSize: 20,
+    textTransform: "capitalize"
   }
 });

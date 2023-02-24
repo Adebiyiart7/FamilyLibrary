@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { getAllBooks } from "../features/books/booksSlice";
 import AppText from "./AppText";
 import colors from "../config/colors";
+import { getTags } from "../features/base/baseSlice";
 
 const BookList = ({ data, isLoading, ListHeaderComponent }) => {
   const [refreshing] = useState(false);
@@ -27,6 +28,7 @@ const BookList = ({ data, isLoading, ListHeaderComponent }) => {
         refreshing={refreshing}
         onRefresh={() => {
           dispatch(getAllBooks());
+          dispatch(getTags());
         }}
       />
     </View>

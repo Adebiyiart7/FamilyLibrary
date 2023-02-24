@@ -20,23 +20,11 @@ import HeadingText from "../components/HeadingText";
 import BookList from "../components/BookList";
 import { useSelector } from "react-redux";
 
-const categories = [
-  { _id: "1", name: "all", focused: "true" },
-  { _id: "2", name: "drama", focused: "false" },
-  { _id: "3", name: "fiction", focused: "false" },
-  { _id: "4", name: "non fiction", focused: "false" },
-  { _id: "5", name: "thriller", focused: "false" },
-  { _id: "6", name: "young adult", focused: "false" },
-  { _id: "7", name: "fantasy", focused: "false" },
-  { _id: "8", name: "romance", focused: "false" },
-  { _id: "9", name: "bible story", focused: "false" },
-  { _id: "10", name: "historical", focused: "false" },
-  { _id: "11", name: "science fiction", focused: "false" }
-];
-
 const Home = () => {
-  const { books, isLoading } = useSelector((state) => state.books);
+  const { books, isLoading: isLoadingBooks } = useSelector((state) => state.books);
+  const { tags, isLoadingTags } = useSelector((state) => state.base);
 
+  
   const Header = () => {
     return (
       <View style={styles.header}>
@@ -55,10 +43,10 @@ const Home = () => {
     return (
       <>
         <FlatList
-          style={styles.categories}
+          style={styles.tags}
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={categories}
+          data={tags}
           ItemSeparatorComponent={<View style={{ marginRight: 10 }} />}
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => <Chip text={item.name} />}
@@ -66,7 +54,7 @@ const Home = () => {
         {books && (
           <HeadingText style={styles.headingText}>Recommended</HeadingText>
         )}
-        {isLoading && (
+        {isLoadingBooks && (
           <AppText style={styles.loadingText}>Loading books...</AppText>
         )}
       </>
@@ -86,7 +74,7 @@ const Home = () => {
         <BookList
           ListHeaderComponent={ListHeaderComponent}
           data={books}
-          isLoading={isLoading}
+          isLoading={isLoadingBooks}
         />
       </>
     </Screen>

@@ -87,7 +87,8 @@ export default BookDetail;
 const styles = StyleSheet.create({
   author: {
     color: colors.lightText,
-    textAlign: "center"
+    textAlign: "center",
+    textTransform: "capitalize"
   },
   button: {
     flex: 1
@@ -137,7 +138,8 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 20,
     textAlign: "center",
-    marginTop: 5
+    marginTop: 5,
+    textTransform: "capitalize"
   },
   top: {
     display: "flex",

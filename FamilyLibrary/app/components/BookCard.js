@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "700",
     fontSize: 16,
-    marginBottom: 5
+    marginBottom: 5,
+    textTransform: "capitalize"
   },
   summary: {
     marginBottom: 5,
