@@ -35,36 +35,12 @@ const addBookSchema = mongoose.Schema(
       type: String,
       required: true
     },
-    genre: {
+    tags: {
       type: String,
       required: true,
+      trim: true,
       min: 3,
-      max: 225,
-      enum: [
-        "Romance",
-        "Mystery",
-        "Thriller",
-        "Horror",
-        "Fiction",
-        "Non-Fiction",
-        "Science Fiction",
-        "Fantasy",
-        "Historical Fiction",
-        "Crime",
-        "Adventure",
-        "Biography",
-        "Autobiography",
-        "Memoir",
-        "Self-help",
-        "Travel",
-        "Comedy",
-        "Drama",
-        "Action",
-        "Satire",
-        "Poetry",
-        "Children's literature",
-        "Young adult literature"
-      ]
+      max: 1000
     },
     fullText: {
       type: String,

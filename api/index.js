@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 // ROUTES
 app.use("/api/users", require("./routes/user"));
 app.use("/api/books", require("./routes/book"));
+app.use("/api/base", require("./routes/base"));
 
 // ERROR
 app.use(errorMiddleware);

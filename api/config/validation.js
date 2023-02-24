@@ -44,7 +44,7 @@ const addBookSchema = Joi.object({
   averageRating: Joi.string().label("Average Rating"),
   ratingsCount: Joi.string().label("Ratings Count"),
   summary: Joi.string().required().label("Summary"),
-  genre: Joi.string().required().min(3).max(255).label("Genre"),
+  tags: Joi.string().required().min(3).max(1000).label("Tags"),
   fullText: Joi.string().required().label("Full Text")
 });
 
