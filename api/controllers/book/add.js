@@ -35,8 +35,8 @@ const add = async (req, res) => {
   // check in all supplied tags exist
   const tagsArray = tags.split(",");
   for (let tag of tagsArray) {
-    tag = tag.trim();
-    
+    tag = tag.trim().toLowerCase();
+
     if (!await Tag.findOne({ name: tag })) {
       res.status(400);
       throw new Error(`This tag (${tag}), does not exist!`)

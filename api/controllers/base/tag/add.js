@@ -19,14 +19,14 @@ const add = async (req, res) => {
 
   // check if tag already exist
   let tag = await Tag.findOne({ name: tagName });
-  console.log(tag);
+
   if (tag) {
     res.status(400);
     throw new Error("A tag with this name already exist.");
   }
 
   // if all the above pass, create a new tag
-  tag = await Tag.create({ name: tagName });
+  tag = await Tag.create({ name: tagName.toLowerCase() });
 
   return res.status(201).json(
     apiResponse(res.statusCode, "Tag added successfully", {
