@@ -7,12 +7,26 @@ const { apiResponse } = require("../../utils");
  * @access      public
  */
 const getAll = async (req, res) => {
-  try {
-    const books = await Book.find().select("-__v");
+  const search = req.query.search;
+  let query = {};
 
-    return res.status(201).json(
-      apiResponse(res.statusCode, "", books)
-    );
+  if (search) {
+    query = {
+      $or: [
+        {
+          title: { $regex: search, $options: "i" }
+        },
+        {
+          author: { $regex: search, $options: "i" }
+        }
+      ]
+    };
+  }
+
+  try {
+    const books = await Book.find(query).select("-__v");
+    console.log(books.length);
+    return res.status(201).json(apiResponse(res.statusCode, "", books));
   } catch (error) {
     console.log(error);
     res.status(400);
