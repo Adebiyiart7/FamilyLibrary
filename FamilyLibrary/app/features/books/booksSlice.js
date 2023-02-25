@@ -15,7 +15,12 @@ const initialState = {
 
 export const getAllBooks = createAsyncThunk("books/all", async (thunkAPI) => {
   try {
-    const response = await axios.get(API_URI + `/books/all`);
+    const response = await axios.get(
+      API_URI + `/books/all`,
+      axiosConfig(
+        `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y5YTg1ZjZkYTY2NGZiZjc2ZjJhNjIiLCJpYXQiOjE2NzczMDU5NTIsImV4cCI6MTY3OTg5Nzk1Mn0.Tex7RwQhl1psQesJ6TXeZ0D_xxJhX9_FqqNegBokwmk`
+      )
+    );
 
     if (response.data) {
       return response.data.body;
@@ -32,7 +37,12 @@ export const getBookSearch = createAsyncThunk(
     let query = `?search=${search}`;
 
     try {
-      const response = await axios.get(API_URI + `/books/all${query}`);
+      const response = await axios.get(
+        API_URI + `/books/all${query}`,
+        axiosConfig(
+          `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y5YTg1ZjZkYTY2NGZiZjc2ZjJhNjIiLCJpYXQiOjE2NzczMDU5NTIsImV4cCI6MTY3OTg5Nzk1Mn0.Tex7RwQhl1psQesJ6TXeZ0D_xxJhX9_FqqNegBokwmk`
+        )
+      );
 
       if (response.data) {
         return response.data.body;

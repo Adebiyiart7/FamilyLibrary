@@ -14,7 +14,12 @@ const initialState = {
 
 export const getTags = createAsyncThunk("base/tags", async (thunkAPI) => {
   try {
-    const response = await axios.get(API_URI + "/base/tags/get20tags");
+    const response = await axios.get(
+      API_URI + "/base/tags/get20tags",
+      axiosConfig(
+        `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y5YTg1ZjZkYTY2NGZiZjc2ZjJhNjIiLCJpYXQiOjE2NzczMDU5NTIsImV4cCI6MTY3OTg5Nzk1Mn0.Tex7RwQhl1psQesJ6TXeZ0D_xxJhX9_FqqNegBokwmk`
+      )
+    );
 
     if (response.data) {
       return response.data.body;

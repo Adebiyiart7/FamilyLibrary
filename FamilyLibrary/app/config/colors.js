@@ -15,6 +15,7 @@ const colors = () => {
       mediumText: "#6e6969",
       primaryColor: "#7E57C2",
       primaryText: "#222",
+      secondaryColor: "#FFC107",
       selectionColor: "#FFFF00",
       white: "#FFF"
     };
@@ -33,6 +34,7 @@ const colors = () => {
     mediumText: "#6e6969",
     primaryColor: "#7E57C2",
     primaryText: "#FFF",
+    secondaryColor: "#FFC107",
     selectionColor: "#FFFF00",
     white: "#000"
   };

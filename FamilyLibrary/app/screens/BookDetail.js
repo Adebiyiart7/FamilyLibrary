@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View
+} from "react-native";
 import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
@@ -19,8 +26,16 @@ import Chip from "../components/Chip";
 
 const BookDetail = ({ navigation, route }) => {
   const [reading, setReading] = useState(true);
+  const [readTime, setReadTime] = useState(0);
   const { books, isLoading } = useSelector((state) => state.books);
   const book = books.find((book) => book._id === route.params._id);
+
+  useEffect(() => {
+    const wpm = 250;
+    const wordCount = book.fullText.split(" ").length;
+    const readTime = Math.ceil(wordCount / wpm);
+    setReadTime(readTime);
+  }, []);
 
   const Footer = () => {
     return (
@@ -31,15 +46,17 @@ const BookDetail = ({ navigation, route }) => {
               name="book-open-page-variant-outline"
               size={24}
             />
-            <AppText style={styles.iconText}>Screen 20 of 650</AppText>
+            <AppText style={styles.iconText}>{readTime}mins Read</AppText>
           </View>
           <TouchableOpacity style={styles.icon}>
             <MaterialCommunityIcons name="book-plus-outline" size={24} />
             <AppText style={styles.iconText}>Bookmark</AppText>
           </TouchableOpacity>
         </View>
+        <AppButton style={{ ...styles.button, ...styles.buyButton }}>
+          Buy
+        </AppButton>
         <AppButton
-          rounded
           style={styles.button}
           onPress={() =>
             navigation.navigate(routes.READ_SCREEN, {
@@ -65,7 +82,7 @@ const BookDetail = ({ navigation, route }) => {
     >
       <FlatList
         horizontal
-        style={{  height: 50 }}
+        style={{ height: 50 }}
         showsHorizontalScrollIndicator={false}
         data={book.tags.split(",")}
         keyExtractor={(item) => item}
@@ -106,6 +123,10 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1
+  },
+  buyButton: {
+    marginRight: 16,
+    backgroundColor: colors.secondaryColor
   },
   displayStars: {
     display: "flex",
