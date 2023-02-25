@@ -11,7 +11,7 @@ const { apiResponse } = require("../../utils");
  * @access        public
  */
 const register = async (req, res) => {
-  try {
+  // try {
     // validate user
     const schema = registerSchema;
     const { error } = schema.validate(req.body);
@@ -52,11 +52,11 @@ const register = async (req, res) => {
         token: token,
       })
     );
-  } catch (error) {
-    console.log(error);
-    res.status(400);
-    throw new Error("Error Creating User");
-  }
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(400);
+  //   throw new Error("Error Creating User");
+  // }
 };
 
 module.exports = register;

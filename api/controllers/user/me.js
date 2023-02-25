@@ -7,7 +7,7 @@ const { apiResponse } = require("../../utils");
  * @access        private
  */
 const me = async (req, res) => {
-  try {
+  // try {
     const user = await User.findById(req.user._id).select([
       "-password",
       "-verificationCode"
@@ -19,11 +19,11 @@ const me = async (req, res) => {
     }
     
     res.status(200).json(apiResponse(res.statusCode, "", user));
-  } catch (error) {
-    console.log(error);
-    res.status(400);
-    throw new Error("Error");
-  }
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(400);
+  //   throw new Error("Error");
+  // }
 };
 
 module.exports = me;
