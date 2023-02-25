@@ -5,6 +5,10 @@ const defaultStyles = {
   readingText: {
     lineHeight: 25,
     fontSize: 17
+  },
+  nullInfo: {
+    color: colors.mediumText,
+    textAlign: "center"
   }
 };
 

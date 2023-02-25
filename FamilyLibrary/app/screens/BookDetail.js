@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // LOCAL IMPORTS
 import routes from "../config/routes";
@@ -23,12 +23,14 @@ import AppFooter from "../components/AppFooter";
 import AppButton from "../components/AppButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Chip from "../components/Chip";
+import { addToBookmarks } from "../features/books/booksSlice";
 
 const BookDetail = ({ navigation, route }) => {
   const [reading, setReading] = useState(true);
   const [readTime, setReadTime] = useState(0);
   const { books, isLoading } = useSelector((state) => state.books);
   const book = books.find((book) => book._id === route.params._id);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const wpm = 250;
@@ -36,6 +38,10 @@ const BookDetail = ({ navigation, route }) => {
     const readTime = Math.ceil(wordCount / wpm);
     setReadTime(readTime);
   }, []);
+
+  const handleBookmark = (_id) => {
+    dispatch(addToBookmarks(_id));
+  };
 
   const Footer = () => {
     return (
@@ -49,7 +55,7 @@ const BookDetail = ({ navigation, route }) => {
             <AppText style={styles.iconText}>{readTime}mins Read</AppText>
           </View>
           <TouchableOpacity style={styles.icon}>
-            <MaterialCommunityIcons name="book-plus-outline" size={24} />
+            <MaterialCommunityIcons name="book-plus-outline" size={24} onPress={() => handleBookmark(book._id)} />
             <AppText style={styles.iconText}>Bookmark</AppText>
           </TouchableOpacity>
         </View>

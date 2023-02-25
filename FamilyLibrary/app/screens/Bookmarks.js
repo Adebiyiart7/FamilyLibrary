@@ -1,45 +1,43 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { ActionSheet } from "@expo/react-native-action-sheet";
-import BottomSheet from "../components/BottomSheet";
+import { FlatList, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-const MyText = () => {
-  const handleLongPress = () => {
-    const options = ["Copy", "Select All", "My Custom Action", "Cancel"];
-    const destructiveButtonIndex = options.indexOf("Cancel");
-    const cancelButtonIndex = options.indexOf("Cancel");
-    ActionSheet.showActionSheetWithOptions(
-      {
-        options,
-        cancelButtonIndex,
-        destructiveButtonIndex
-      },
-      (buttonIndex) => {
-        switch (buttonIndex) {
-          case options.indexOf("Copy"):
-            // Implement copy functionality here
-            break;
-          case options.indexOf("Select All"):
-            // Implement select all functionality here
-            break;
-          case options.indexOf("My Custom Action"):
-            // Implement custom action functionality here
-            console.log("My custom action was selected!");
-            break;
-          default:
-            break;
-        }
-      }
-    );
-  };
+// LOCAL IMPORTS
+import AppHeader from "../components/AppHeader";
+import Screen from "../components/Screen";
+import BookCard from "../components/BookCard";
+import AppText from "../components/AppText";
+import defaultStyles from "../config/styles";
+import { getAllBookmarks } from "../features/books/booksSlice";
+
+const Bookmarks = () => {
+  const [refreshing, setRefreashing] = useState(false);
+  const { bookmarks } = useSelector((state) => state.books);
+  const dispatch = useDispatch();
 
   return (
-    <View style={{marginTop: 100}}>
-      <Text selectable={true} onLongPress={handleLongPress}>
-        This is some text that can be highlighted.
-      </Text>
-    </View>
+    <Screen
+      header={<AppHeader hideBackButton title={"Bookmarks"} />}
+      scrollable={false}
+    >
+      {bookmarks.length === 0 && (
+        <View>
+          <AppText style={defaultStyles.nullInfo}>No bookmarks yet!</AppText>
+          <AppText style={defaultStyles.nullInfo}>pull to refresh</AppText>
+        </View>
+      )}
+
+      <FlatList
+        data={bookmarks}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => <BookCard item={item} />}
+        refreshing={refreshing}
+        onRefresh={() => dispatch(getAllBookmarks())}
+      />
+    </Screen>
   );
 };
 
-export default MyText;
+export default Bookmarks;
+
+const styles = StyleSheet.create({});
