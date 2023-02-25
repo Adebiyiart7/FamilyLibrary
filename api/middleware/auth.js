@@ -6,7 +6,7 @@ const User = require("../models/user");
 module.exports = async (req, res, next) => {
   let token;
 
-  // try {
+  try {
     if (
       !req.headers.authorization &&
       !req.headers.authorization.startsWith("Bearer ")
@@ -20,9 +20,9 @@ module.exports = async (req, res, next) => {
   
     req.user = await User.findById(decoded._id).select(["_id", "username", "email"]);
     next();
-  // } catch (error) {
-  //   console.log(error)
-  //   res.status(400);
-  //   throw new Error("Unauthorized!");
-  // }
+  } catch (error) {
+    console.log(error)
+    res.status(400);
+    throw new Error("Unauthorized!");
+  }
 };
