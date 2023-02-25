@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
@@ -15,6 +15,7 @@ import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
 import AppButton from "../components/AppButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Chip from "../components/Chip";
 
 const BookDetail = ({ navigation, route }) => {
   const [reading, setReading] = useState(true);
@@ -46,7 +47,8 @@ const BookDetail = ({ navigation, route }) => {
             })
           }
         >
-          {reading ? "Continue Reading" : "Start Reading"}
+          {/* {reading ? "Continue Reading" : "Start Reading"} */}
+          Read
         </AppButton>
       </View>
     );
@@ -59,25 +61,37 @@ const BookDetail = ({ navigation, route }) => {
           <Footer />
         </AppFooter>
       }
+      scrollable={false}
     >
-      <View style={styles.top}>
-        <View style={styles.imageContainer}>
-          <Image source={{ uri: book.image }} style={styles.image} />
+      <FlatList
+        horizontal
+        style={{  height: 50 }}
+        showsHorizontalScrollIndicator={false}
+        data={book.tags.split(",")}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => <Chip text={item} />}
+        ItemSeparatorComponent={<View style={{ marginRight: 10 }} />}
+      />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.top}>
+          <View style={styles.imageContainer}>
+            <Image source={{ uri: book.image }} style={styles.image} />
+          </View>
+          <View style={styles.basics}>
+            <AppText numberOfLines={2} style={styles.title}>
+              {book.title}
+            </AppText>
+            <AppText numberOfLines={2} style={styles.author}>
+              {book.author}
+            </AppText>
+            <DisplayStars size={5} style={styles.displayStars} />
+          </View>
         </View>
-        <View style={styles.basics}>
-          <AppText numberOfLines={2} style={styles.title}>
-            {book.title}
-          </AppText>
-          <AppText numberOfLines={2} style={styles.author}>
-            {book.author}
-          </AppText>
-          <DisplayStars size={5} style={styles.displayStars} />
+        <View style={styles.summary}>
+          <HeadingText style={{ marginBottom: 5 }}>Summary</HeadingText>
+          <AppText style={defaultStyles.readingText}>{book.summary}</AppText>
         </View>
-      </View>
-      <View style={styles.summary}>
-        <HeadingText style={{ marginBottom: 5 }}>Summary</HeadingText>
-        <AppText style={defaultStyles.readingText}>{book.summary}</AppText>
-      </View>
+      </ScrollView>
     </Screen>
   );
 };
@@ -133,7 +147,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 50
   },
-
+  tags: {
+    // width: "100%"
+  },
   title: {
     fontWeight: "700",
     fontSize: 20,
@@ -143,6 +159,7 @@ const styles = StyleSheet.create({
   },
   top: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    paddingTop: 16
   }
 });

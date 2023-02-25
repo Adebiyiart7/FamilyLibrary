@@ -18,13 +18,26 @@ import AppTextInput from "../components/form/AppTextInput";
 import Chip from "../components/Chip";
 import HeadingText from "../components/HeadingText";
 import BookList from "../components/BookList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getBookSearch, getAllBooks } from "../features/books/booksSlice";
 
 const Home = () => {
-  const { books, isLoading: isLoadingBooks } = useSelector((state) => state.books);
-  const { tags, isLoadingTags } = useSelector((state) => state.base);
-
   
+  const [searchInput, setSearchInput] = useState("");
+  const { books, bookSearch, isLoading: isLoadingBooks } = useSelector(
+    (state) => state.books
+  );
+  const { tags } = useSelector((state) => state.base);
+  const dispatch = useDispatch();
+
+  const booksToDisplay = () => {
+    if (bookSearch.length > 0) return bookSearch;
+    return books
+  }
+  const handleSearch = () => {
+    dispatch(getBookSearch(searchInput));
+  };
+
   const Header = () => {
     return (
       <View style={styles.header}>
@@ -65,15 +78,26 @@ const Home = () => {
     <Screen scrollable={false}>
       <Header />
       <AppTextInput
+        onChangeText={(value) => {
+          setSearchInput(value);
+        }}
         style={styles.searchInput}
-        placeholder="Search Library..."
+        placeholder="Search by Author or Title..."
         Icon={<Ionicons name="search" size={20} color={colors.mediumText} />}
+        RightIcon={
+          <TouchableOpacity
+            onPress={() => handleSearch()}
+            style={styles.searchRightIcon}
+          >
+            <Ionicons name="search" size={20} color={colors.white} />
+          </TouchableOpacity>
+        }
       />
       <>
         {/* <BookList ListHeaderComponent={ListHeaderComponent} data={bookList} /> */}
         <BookList
           ListHeaderComponent={ListHeaderComponent}
-          data={books}
+          data={booksToDisplay()}
           isLoading={isLoadingBooks}
         />
       </>
@@ -85,8 +109,8 @@ export default Home;
 
 const styles = StyleSheet.create({
   avatar: {
-    height: 40,
-    width: 40,
+    height: 45,
+    width: 45,
     borderRadius: 30
   },
   categories: {
@@ -124,5 +148,14 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     marginTop: 15
+  },
+  searchRightIcon: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.primaryColor,
+    height: 45,
+    width: 45,
+    borderRadius: 30
   }
 });

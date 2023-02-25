@@ -5,7 +5,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_URI, axiosConfig } from "../config";
 
 const initialState = {
-  books: null,
+  books: [],
+  bookSearch: [],
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -14,7 +15,7 @@ const initialState = {
 
 export const getAllBooks = createAsyncThunk("books/all", async (thunkAPI) => {
   try {
-    const response = await axios.get(API_URI + "/books/all");
+    const response = await axios.get(API_URI + `/books/all`);
 
     if (response.data) {
       return response.data.body;
@@ -24,6 +25,24 @@ export const getAllBooks = createAsyncThunk("books/all", async (thunkAPI) => {
     return thunkAPI.rejectWithValue(message);
   }
 });
+
+export const getBookSearch = createAsyncThunk(
+  "books/search",
+  async (search = "", thunkAPI) => {
+    let query = `?search=${search}`;
+
+    try {
+      const response = await axios.get(API_URI + `/books/all${query}`);
+
+      if (response.data) {
+        return response.data.body;
+      }
+    } catch (error) {
+      const message = error.response.data.body.message.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 const booksSlice = createSlice({
   name: "books",
@@ -47,6 +66,22 @@ const booksSlice = createSlice({
         state.books = action.payload;
       })
       .addCase(getAllBooks.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+
+      // BOOK SEARCH
+      .addCase(getBookSearch.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getBookSearch.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.bookSearch = action.payload;
+      })
+      .addCase(getBookSearch.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
