@@ -4,7 +4,7 @@ const { apiResponse } = require("../../../utils");
 /**
  * @route       POST /api/base/tag/get20Tags
  * @desc        get 20 tag; paginated in 20s
- * @access      public
+ * @access      private
  */
 const get20Tags = async (req, res) => {
   const tags = await Tag.find().select(["name", "numberOfBooks"]).sort({

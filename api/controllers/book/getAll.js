@@ -4,7 +4,7 @@ const { apiResponse } = require("../../utils");
 /**
  * @route       POST /api/books/all
  * @desc        get all books
- * @access      public
+ * @access      private
  */
 const getAll = async (req, res) => {
   const search = req.query.search;
