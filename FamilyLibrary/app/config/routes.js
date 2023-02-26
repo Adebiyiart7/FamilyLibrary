@@ -4,6 +4,7 @@ const routes = {
   BOOKMARKS: "Bookmarks",
   HOME: "Home",
   LIBRARY: "Library",
+  PROFILE: "Profile",
   READ_SCREEN: "ReadScreen",
   SETTINGS: "Settings",
 };

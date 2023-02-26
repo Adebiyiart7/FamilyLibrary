@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import routes from "../config/routes";
 import HomeScreen from "../screens/HomeScreen";
 import tabBarIcon from "./tabBarIcon";
-import Bookmarks from "../screens/Bookmarks";
+import Bookmarks from "../screens/BookmarksScreen";
 import LibraryScreen from "../screens/LibraryScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import colors from "../config/colors";

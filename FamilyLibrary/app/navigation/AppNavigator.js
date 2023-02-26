@@ -5,8 +5,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 // LOCAL IMPORTS
 import routes from "../config/routes";
 import TabNavigator from "./TabNavigator";
-import BookDetail from "../screens/BookDetail";
+import BookDetail from "../screens/BookDetailScreen";
 import ReadScreen from "../screens/ReadScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,13 @@ const AppNavigator = () => {
       <Stack.Screen
         name={routes.READ_SCREEN}
         component={ReadScreen}
+        options={{
+          cardStyleInterpolator: cardStyleInterpolator
+        }}
+      />
+      <Stack.Screen
+        name={routes.PROFILE}
+        component={ProfileScreen}
         options={{
           cardStyleInterpolator: cardStyleInterpolator
         }}

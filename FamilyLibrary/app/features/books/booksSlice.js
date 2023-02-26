@@ -57,9 +57,9 @@ export const addToBookmarks = createAsyncThunk(
       const response = await axios.put(
         API_URI + `/bookmarks/add?_id=${bookID}`,
         axiosConfig(
-          `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y5YTg1ZjZkYTY2NGZiZjc2ZjJhNjIiLCJpYXQiOjE2NzczNTExNDAsImV4cCI6MTY3OTk0MzE0MH0._nYG48JggObRAXNvENh5eBtS0Zi7PZLJGlMzhlztaWw`
+          `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y5YTg1ZjZkYTY2NGZiZjc2ZjJhNjIiLCJpYXQiOjE2NzczNDk1MDYsImV4cCI6MTY3OTk0MTUwNn0.gEA0iJPuQrwCm5xrI5Je9JbYd4xjcOjcQzw5BpdmR6g`
         )
-      );console.log(response);
+      );
       if (response.data) {
         return response.data.body;
       }

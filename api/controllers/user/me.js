@@ -10,7 +10,9 @@ const me = async (req, res) => {
   // try {
     const user = await User.findById(req.user._id).select([
       "-password",
-      "-verificationCode"
+      "-verificationCode",
+      "-bookmarks",
+      "-readingList"
     ]);
 
     if (!user) {

@@ -20,8 +20,9 @@ import HeadingText from "../components/HeadingText";
 import BookList from "../components/BookList";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookSearch, getAllBooks } from "../features/books/booksSlice";
+import routes from "../config/routes";
 
-const Home = () => {
+const Home = ({navigation}) => {
   
   const [searchInput, setSearchInput] = useState("");
   const { books, bookSearch, isLoading: isLoadingBooks } = useSelector(
@@ -45,7 +46,7 @@ const Home = () => {
           <Image source={logo} style={styles.logo} />
           <AppText style={styles.logoText}>Family Library</AppText>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate(routes.PROFILE)}>
           <Image source={avatar} style={styles.avatar} />
         </TouchableOpacity>
       </View>

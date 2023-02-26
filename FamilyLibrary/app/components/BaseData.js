@@ -4,7 +4,8 @@ import { View } from "react-native";
 // LOCAL IMPORTS
 import { useDispatch } from "react-redux";
 import { getTags } from "../features/base/baseSlice";
-import { getAllBooks } from "../features/books/booksSlice";
+import { getAllBookmarks, getAllBooks } from "../features/books/booksSlice";
+import { getProfile } from "../features/profile/profileSlice";
 
 export default function BaseData() {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ export default function BaseData() {
   useEffect(() => {
     dispatch(getAllBooks());
     dispatch(getTags());
+    dispatch(getAllBookmarks());
+    dispatch(getProfile());
   }, []);
 
   return <View />;

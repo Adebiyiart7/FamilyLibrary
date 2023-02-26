@@ -27,6 +27,9 @@ const userSchema = mongoose.Schema(
       max: 255,
       trim: true
     },
+    avatar: {
+      type: String,
+    },
     fullname: {
       type: String,
       min: 3,
@@ -48,6 +51,13 @@ const userSchema = mongoose.Schema(
     },
     bookmarks: [
       {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tag"
+      }
+    ],
+    readingList: [
+      {
+        position: Number,
         type: mongoose.Schema.Types.ObjectId,
         ref: "Tag"
       }
