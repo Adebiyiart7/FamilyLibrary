@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema(
       trim: true
     },
     avatar: {
-      type: String,
+      type: String
     },
     fullname: {
       type: String,
@@ -60,6 +60,17 @@ const userSchema = mongoose.Schema(
         position: Number,
         type: mongoose.Schema.Types.ObjectId,
         ref: "Tag"
+      }
+    ],
+    interests: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tag"
+      }
+    ],
+    newWords: [
+      {
+        type: String
       }
     ],
     isActive: {

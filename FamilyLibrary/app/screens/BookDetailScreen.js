@@ -13,7 +13,6 @@ import { useSelector, useDispatch } from "react-redux";
 import routes from "../config/routes";
 import Screen from "../components/Screen";
 import AppText from "../components/AppText";
-import bookList from "../data/bookList";
 import colors from "../config/colors";
 import defaultStyles from "../config/styles";
 import DisplayStars from "../components/DisplayStars";

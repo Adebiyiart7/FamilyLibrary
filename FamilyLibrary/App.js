@@ -1,5 +1,4 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
@@ -10,6 +9,7 @@ import { loadFonts } from "./app/components/Font";
 import store from "./app/store/store";
 import { Provider } from "react-redux";
 import BaseData from "./app/components/BaseData";
+import { StatusBar } from "react-native";
 
 export default function App() {
   useEffect(() => {
@@ -21,8 +21,8 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
           <StatusBar
-            backgroundColor={colors.appBackground}
-            barStyle={theme === "light" ? "dark-content" : "light-content"}
+            backgroundColor={colors.primaryColor}
+            barStyle={"light-content"}
           />
           <AppNavigator />
         </NavigationContainer>

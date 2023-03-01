@@ -1,45 +1,190 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useWindowDimensions,
+  View
+} from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import Screen from "../components/Screen";
 import AppHeader from "../components/AppHeader";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
-import ProfileCard from "../components/ProfileCard";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Card1 from "../components/Card1";
+import { MaterialCommunityIcons, Fontisto } from "@expo/vector-icons";
+import routes from "../config/routes";
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   const { profile } = useSelector((state) => state.profile);
+  const { width: screenWidth } = useWindowDimensions();
 
   return (
-    <Screen header={<AppHeader title="Profile" />}>
+    <Screen
+      style={{ backgroundColor: colors.primaryColor }}
+      removeWall
+      scrollable={false}
+      header={
+        <AppHeader
+          title="Profile"
+          textColor={colors.white}
+          style={{ backgroundColor: colors.primaryColor }}
+        />
+      }
+    >
       <View style={styles.userInfo}>
-        <Image
-          source={{ uri: "https://picsum.photos/200/200" }}
-          style={styles.avatar}
-        />
-        <AppText style={styles.fullname}>
-          {profile.fullname ? profile.fullname : profile.username}
-        </AppText>
-        <AppText style={styles.booksRead}>Read 67 books</AppText>
+        <View style={styles.user}>
+          <Image
+            source={{ uri: "https://picsum.photos/200/200" }}
+            style={styles.avatar}
+          />
+          <View style={{ marginLeft: 16 }}>
+            <AppText style={styles.fullname}>Adeeyo Joseph Adebiyi</AppText>
+            <AppText style={styles.username}>{profile.username}</AppText>
+          </View>
+        </View>
+        <View style={styles.moreInfo}>
+          <View style={styles.moreInfoTextsContainer}>
+            <AppText style={styles.moreInfoText}>167</AppText>
+            <AppText style={[styles.moreInfoSubText]}>Books Read</AppText>
+          </View>
+          <View style={styles.moreInfoTextsContainer}>
+            <AppText style={styles.moreInfoText}>657</AppText>
+            <AppText style={[styles.moreInfoSubText]}>Books Read</AppText>
+          </View>
+          <View style={styles.moreInfoTextsContainer}>
+            <AppText style={styles.moreInfoText}>869</AppText>
+            <AppText style={[styles.moreInfoSubText]}>Books Read</AppText>
+          </View>
+        </View>
+        <View style={[styles.curve, { width: screenWidth }]} />
       </View>
-      <View style={styles.cards}>
-        <ProfileCard
-          Icon={<MaterialCommunityIcons name={"account-edit-outline"} />}
-          title={"Edit profile"}
-          RightItem={<TouchableOpacity><AppText>Edit</AppText></TouchableOpacity>}
+
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.cards}>
+        <Card1
+          RightItem={
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={22}
+              color={colors.mediumText}
+            />
+          }
+          Icon={
+            <MaterialCommunityIcons
+              size={22}
+              color={colors.primaryColor}
+              name={"account-edit"}
+            />
+          }
+          title={"Edit Profile"}
         />
-        <ProfileCard
-          Icon={<MaterialCommunityIcons name="bookshelf" />}
+        <Card1
+          RightItem={
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={22}
+              color={colors.mediumText}
+            />
+          }
+          Icon={
+            <MaterialCommunityIcons
+              size={22}
+              color={colors.primaryColor}
+              name="bookshelf"
+            />
+          }
           title={"Reading List"}
-          RightItem={<TouchableOpacity><AppText>Edit</AppText></TouchableOpacity>}
         />
-        <ProfileCard
-          Icon={<MaterialCommunityIcons name="bookmark-multiple-outline" />}
-           title={"Bookmarks"}
-           RightItem={<TouchableOpacity><AppText>Edit</AppText></TouchableOpacity>}
+        <Card1
+          onPres
+          RightItem={
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={22}
+              color={colors.mediumText}
+            />
+          }
+          s={() => navigation.navigate(routes.BOOKMARKS)}
+          Icon={
+            <MaterialCommunityIcons
+              size={22}
+              color={colors.primaryColor}
+              name="bookmark-multiple"
+            />
+          }
+          title={"Bookmarks"}
         />
-      </View>
+        <Card1
+          onPres
+          RightItem={
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={22}
+              color={colors.mediumText}
+            />
+          }
+          s={() => navigation.navigate(routes.BOOKMARKS)}
+          Icon={
+            <MaterialCommunityIcons
+              size={22}
+              color={colors.primaryColor}
+              name="file-document-multiple"
+            />
+          }
+          title={"New Words"}
+        />
+        <Card1
+          onPres
+          RightItem={
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={22}
+              color={colors.mediumText}
+            />
+          }
+          s={() => navigation.navigate(routes.BOOKMARKS)}
+          Icon={
+            <Fontisto size={22} color={colors.primaryColor} name="hashtag" />
+          }
+          title={"Interests"}
+        />
+        <Card1
+          onPres
+          RightItem={
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={22}
+              color={colors.mediumText}
+            />
+          }
+          s={() => navigation.navigate(routes.BOOKMARKS)}
+          Icon={
+            <Fontisto size={22} color={colors.primaryColor} name="question" />
+          }
+          title={"FAQ's"}
+        />
+        <Card1
+          onPres
+          RightItem={
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={22}
+              color={colors.mediumText}
+            />
+          }
+          s={() => navigation.navigate(routes.BOOKMARKS)}
+          Icon={
+            <MaterialCommunityIcons
+              size={22}
+              color={colors.primaryColor}
+              name="information"
+            />
+          }
+          title={"About"}
+        />
+      </ScrollView>
     </Screen>
   );
 };
@@ -48,22 +193,60 @@ export default ProfileScreen;
 
 const styles = StyleSheet.create({
   avatar: {
-    height: 150,
-    width: 150,
-    borderRadius: 100
+    height: 70,
+    width: 70,
+    borderRadius: 50
   },
   cards: {
-    marginTop: 50,
+    display: "flex",
+    height: "100%",
+    paddingHorizontal: 16,
+    backgroundColor: colors.appBackground
+  },
+  curve: {
+    position: "absolute",
+    bottom: -45,
+    backgroundColor: colors.appBackground,
+    height: 70,
+    borderTopStartRadius: 25,
+    borderTopEndRadius: 25
   },
   fullname: {
     fontWeight: "bold",
     fontSize: 20,
-    marginTop: 16,
+    color: colors.white
   },
-  booksRead: {
-    color: colors.mediumText
+  username: {
+    color: colors.white,
+    fontSize: 13
+  },
+  moreInfo: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 16
+  },
+  moreInfoText: {
+    color: colors.white,
+    fontWeight: "bold",
+    fontSize: 22
+  },
+  moreInfoTextsContainer: {
+    alignItems: "center"
+  },
+  moreInfoSubText: {
+    color: colors.white,
+    fontSize: 13
+  },
+  rightAction: { color: colors.primaryColor, fontWeight: "bold", fontSize: 15 },
+  user: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16
   },
   userInfo: {
-    alignItems: "center"
+    paddingBottom: 50,
+    paddingHorizontal: 16
   }
 });

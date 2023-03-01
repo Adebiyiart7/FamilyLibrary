@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import AppText from "./AppText";
 import colors from "../config/colors";
 
-const AppHeader = ({ title, style, hideBackButton = false }) => {
+const AppHeader = ({ title, style, textColor, hideBackButton = false }) => {
   const navigation = useNavigation();
 
   return (
@@ -16,11 +16,11 @@ const AppHeader = ({ title, style, hideBackButton = false }) => {
           <Ionicons
             size={30}
             name="ios-arrow-back"
-            color={colors.primaryText}
+            color={textColor || colors.primaryText}
           />
         </TouchableOpacity>
       )}
-      <AppText style={styles.title} numberOfLines={1}>
+      <AppText style={[styles.title, {color: textColor}]} numberOfLines={1}>
         {title}
       </AppText>
     </View>
@@ -34,9 +34,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 8,
-    // borderBottomColor: colors.border100,
-    // borderBottomWidth: 1
+    padding: 16,
   },
   title: {
     marginLeft: 16,

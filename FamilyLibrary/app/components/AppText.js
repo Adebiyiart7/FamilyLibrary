@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import Markdown from "react-native-markdown-display";
+// import Markdown from "react-native-markdown-display";
 // import SelectableText from "react-native-selectable-text";
 
 // LOCAL IMPORTS
@@ -27,20 +27,20 @@ const AppText = ({
     return {};
   };
 
-  if (markdown) {
-    return (
-      // <SelectableText>
-        <Markdown
-          onPress={onPress}
-          numberOfLines={numberOfLines}
-          style={{ text: [styles.text, readingText(), style] }}
-      >
+  // if (markdown) {
+  //   return (
+  //     // <SelectableText>
+  //       <Markdown
+  //         onPress={onPress}
+  //         numberOfLines={numberOfLines}
+  //         style={{ text: [styles.text, readingText(), style] }}
+  //     >
 
-          {children}
-        </Markdown>
-      // </SelectableText>
-    );
-  }
+  //         {children}
+  //       </Markdown>
+  //     // </SelectableText>
+  //   );
+  // }
 
   return (
     <Text
